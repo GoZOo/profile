@@ -23,7 +23,7 @@ class ProfileController extends ControllerBase implements ContainerInjectionInte
   /**
    * Provides the profile submission form.
    *
-   * @param \Drupal\user\UserInterface $profile_type
+   * @param \Drupal\user\UserInterface $user
    *   The user account.
    * @param \Drupal\profile\Entity\ProfileTypeInterface $profile_type
    *   The profile type entity for the profile.
