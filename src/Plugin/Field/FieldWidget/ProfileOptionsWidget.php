@@ -90,8 +90,6 @@ class ProfileOptionsWidget extends OptionsWidgetBase {
       );
       $module_handler->alter('options_list', $options, $context);
 
-      array_walk_recursive($options, array($this, 'sanitizeLabel'));
-
       // Options might be nested ("optgroups"). If the widget does not support
       // nested options, flatten the list.
       if (!$this->supportsGroups()) {
@@ -101,14 +99,6 @@ class ProfileOptionsWidget extends OptionsWidgetBase {
       $this->options = $options;
     }
     return $this->options;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function sanitizeLabel(&$label) {
-    // Select form inputs allow unencoded HTML entities, but no HTML tags.
-    $label = Html::decodeEntities($label);
   }
 
   /**
