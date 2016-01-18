@@ -1,0 +1,33 @@
+.form-radios {
+  display: flex;
+  align-items: stretch;
+  align-content: space-around;
+  flex-flow: row wrap;
+}
+
+fieldset{
+  border: 0;
+}
+.profile-options-widget .form-item {
+  display: flex;
+  align-items: center;
+  border: 1px solid lightgrey;
+  padding: 5px;
+  border-radius: 2px;
+  flex: 1;
+  min-width: 200px;
+  max-width: 400px;
+  margin: 5px;
+}
+
+.profile-options-widget .form-item:hover {
+  border-color: grey;
+}
+
+.profile-options-widget .form-item input {
+  margin: 0 10px;
+}
+
+.profile-options-widget .form-item label {
+  width: 100%;
+}

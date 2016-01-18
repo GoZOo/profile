@@ -3,3 +3,8 @@ drupal.profile-items:
   css:
     component:
       css/profile.base.css: {}
+drupal.profile-options-widget:
+  version: VERSION
+  css:
+    component:
+      css/profile.options.widget.css: {}
