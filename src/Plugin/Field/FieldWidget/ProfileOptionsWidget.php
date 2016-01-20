@@ -22,7 +22,7 @@ use Drupal\Core\Field\Plugin\Field\FieldWidget\OptionsWidgetBase;
  *   field_types = {
  *     "entity_reference",
  *   },
- *   multiple_values = FALSE
+ *   multiple_values = TRUE
  * )
  */
 class ProfileOptionsWidget extends OptionsWidgetBase {
@@ -32,12 +32,22 @@ class ProfileOptionsWidget extends OptionsWidgetBase {
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
     $element = parent::formElement($items, $delta, $element, $form, $form_state);
+    $multiple = $this->fieldDefinition->getFieldStorageDefinition()->isMultiple();
+    $values = $items->getValue();
+    if ($multiple) {
+      $default_value = array_column($values, 'target_id');
+      $type = 'checkboxes';
+    }
+    else {
+      $default_value = !empty($values) ? $values[0]['target_id'] : NULL;
+      $type = 'radios';
+    }
 
     $element += array(
-      '#type' => 'radios',
+      '#type' => $type,
       '#options' => $this->getOptions($items->getEntity()),
-      '#default_value' => $this->getSelectedOptions($items, $delta),
-      '#multiple' => FALSE,
+      '#default_value' => $default_value,
+      '#multiple' => $multiple,
       '#attached' => [
         'library' => [
           'profile/drupal.profile-options-widget',
